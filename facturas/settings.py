@@ -51,10 +51,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'facturas.urls'
 
+# Lin,Leo - by default, django loads every template from
+# the 'template' folder within every app from 'DIRS'.
+# To override this behavior and create a template at
+# our django project level, it uses 'APP_DIRS'.
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # Lin,Leo - here we place all our templates
+                                                       # under django-project/templates folder.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
