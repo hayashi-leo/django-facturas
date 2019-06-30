@@ -1,0 +1,19 @@
+
+<!-- templates/dashboard/home.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}My Dashboard {% endblock %}
+
+{% block content %}
+
+<h1> Welcome {{ user }} to your dashboard </h1>
+
+<p> You have {% if num_products > 0 %} {{ num_products }} {% else %} no {% endif %} products </p>
+
+<p> <a href="{% url 'logout' %}">logout</a></p> <!-- 'logout' url provided by django.auth app' -->
+<!-- remember to define LOGOUT_REDIRECT_URL in settings.py -->
+
+{% endblock %}
+
+

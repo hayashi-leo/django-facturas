@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
-    'accounts'
+    'accounts',
+    'products',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'proj_static_files')
 ]
+
+# redirect to this URL upon successfully logged-in
+LOGIN_REDIRECT_URL = 'home' # this is the name given to our home url, see urls.py
+
+# tells django.auth app to redirect to this url
+# upon logging out!
+LOGOUT_REDIRECT_URL = 'home' # this is the name given to our home url, see urls.py

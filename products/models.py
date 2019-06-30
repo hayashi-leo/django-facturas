@@ -9,7 +9,7 @@ class Product(models.Model):
     a User Account.
     '''
     title = models.CharField(max_length=120)
-    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     code = models.CharField(max_length=120)
     description = models.TextField()
 

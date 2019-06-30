@@ -1,21 +1,17 @@
-<!DOCTYPE html>
+<!-- templates/home_page.html -->
 
-<html lang="en">
+{% extends 'base.html' %}
 
-    <head>
+{% block title %} Facturas Home Page {% endblock %}
 
-    </head>
+{% block content %}
+<h1> {{ title }} </h1>
+<h1> Site is under contruction !!! </h1>
 
-    <body>
-        <div class='text-center'>
-            <h1>{{ title }}</h1>
-            <h1>Under construction!</h1>
-        </div>
+{% if user.is_authenticated %}
+    <h2> Welcome back registered user!</h2>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
 
-        <div class='container'>
-            <div class='row'>
-                <p>{{ content }}</p>
-            </div>
-        </div>
-    </body>
-</html>
+{% endblock %}

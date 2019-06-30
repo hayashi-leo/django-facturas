@@ -5,4 +5,6 @@ virtualenv
 db.sqlite3
 /static
 .DS_Store
+my_notes.txt
+
 
