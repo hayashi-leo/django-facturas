@@ -127,11 +127,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+## STATIC_URL is is the URL of which the static files stored in
+## STATIC_ROOT path  are served (Apache or nginx).
+## Example: /static/ or http://static.example.com/
+##
+## if you set 'STATIC_URL' = 'http://static.example.com', then you must
+## serve the 'STATIC_ROOT' folder by apache or nginx at 'http://static.example.com/'.
+## When used in the template
+## <link rel="stylesheet" href="{{ STATIC_URL }}css/base.css" type="text/css"/>
+## link is converted into
+## <link rel="stylesheet" href="/static/css/base.css" type="text/css"/>
+## and since href starts with /, final link will contain your domain
+## <link ref="stylesheet" href="http://yourdomain/static/css/base/css" type=text/css"/>
+
 STATIC_URL = '/static/'
 
+# STATICFILES_DIR is used to include additional directories
+# for 'collectstatic' to look for.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'proj_static_files')
 ]
+
+## STATIC_ROOT is useless during development, it is only required for deployment
+## When Debug=True, Django looks for static files inside each app's directory
+## and severs them automatically.
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
 
 # redirect to this URL upon successfully logged-in
 LOGIN_REDIRECT_URL = 'home' # this is the name given to our home url, see urls.py

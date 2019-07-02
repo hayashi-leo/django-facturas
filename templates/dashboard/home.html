@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<h1> Welcome {{ user }} to your dashboard </h1>
+<h1> Welcome {{ user.get_username }} to your dashboard pooh </h1>
 
 <p> You have {% if num_products > 0 %} {{ num_products }} {% else %} no {% endif %} products </p>
 
@@ -15,5 +15,3 @@
 <!-- remember to define LOGOUT_REDIRECT_URL in settings.py -->
 
 {% endblock %}
-
-

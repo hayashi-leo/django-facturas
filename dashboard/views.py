@@ -11,9 +11,9 @@ def home(request):
     '''
     num_products = Product.objects.all().count()
 
+    num_products += 1
     context = {
         'num_products': num_products,
-        'user' : User,
     }
 
     return render(request, 'dashboard/home.html', context)
