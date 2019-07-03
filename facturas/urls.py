@@ -20,6 +20,7 @@ from django.urls import include
 
 from home import views as home_views
 from accounts import views as accounts_views
+from products import views as products_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Lin,Leo - django 2.0 url style
@@ -29,4 +30,5 @@ urlpatterns = [
 
     # add django built-in auth urls for login, logout and password management
     path('accounts/', include('django.contrib.auth.urls')),
+    path('dashboard/product/', products_views.product_list, name='product_list')
 ]
