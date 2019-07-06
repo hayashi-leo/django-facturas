@@ -16,7 +16,8 @@ def product_list(request):
 @login_required(login_url=LOGIN_URL)
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'products/product_detail.html', {'product':product})
+    form = ProductForm(instance=product)
+    return render(request, 'products/product_detail.html', {'form' : form })
 
 @login_required(login_url=LOGIN_URL)
 def product_new(request):

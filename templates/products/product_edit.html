@@ -17,7 +17,7 @@
                 {% csrf_token %}
                 {% for field in form.visible_fields %}
 
-                <div class="form-group">
+                <div class="form-group col-12 col-sm-6">
                     {% if field.label == 'IsServiceTaxIncluded' or field.label == 'IsSaleTaxIncluded' %}
                     <input name="{{ field.name }}" type="checkbox"> {{ field.label }}
                     {% else %}
@@ -33,7 +33,13 @@
                 </div>
                 {% endfor %}
 
+                <div class="form-group col-12 col-sm-6">
+
                 <button type="submit" class="btn btn-lg btn-success btn-block">Save</button>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                <button type="cancel" class="btn btn-lg btn-success btn-block" onclick="return false;">Cancel</button>
+                </div>
 
             </fieldset>
         </form>

@@ -6,30 +6,22 @@
 
 {# dashboard_contents must be rendered within <div class="row"/> tags #}
 
-<div class="row">
-    {% if product.date_created %}
-        <div class="date">
-            {{ product.date_created }}
+<div class="row" style="align-content: center">
+    <div class="panel-heading">
+        <h3 class="panel-title">Product Details</h3>
+    </div>
+
+    <div class="row" style="align-content: center">
+
+    {% for field in form.visible_fields %}
+        <div class="col-12 col-sm-6">
+            {{ field.label }} :<br>
+            <input class="form-control" name="{{ field.name }}" value="{{ field.value }}" type="text" readonly>
         </div>
-    {% endif %}
+    {% endfor %}
 
-    {% if product.date_modified %}
-        <div class="date">
-            {{ product.date_modified }}
-        </div>
-    {% endif %}
+    </div> <!-- class="row" -->
+</div>
 
-    <p>description: {{ product.description }} </p>
-    <p>title: {{ product.title }} </p>
-    <p>code: {{ product.code }} </p>
-    <p>quantity: {{ product.quantity }} </p>
-    <p>unit price: {{ product.unitPrice }} </p>
-    <p>bar code: {{ product.barCode }} </p>
-    <p>unit of measure: {{ product.unitOfMeasure }} </p>
-    <p>sales tax included: {{ product.isSaleTaxIncluded }} </p>
-    <p>service tax included: {{ product.isServiceTaxIncluded }} </p>
-
-    <p>discontinued: {{ product.isDiscontinued }} </p>
-</div> <!-- class="row" --> 
 
 {% endblock %}
