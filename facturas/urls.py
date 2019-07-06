@@ -30,5 +30,5 @@ urlpatterns = [
 
     # add django built-in auth urls for login, logout and password management
     path('accounts/', include('django.contrib.auth.urls')),
-    path('dashboard/product/', products_views.product_list, name='product_list')
+    path('dashboard/', include('products.urls')),
 ]

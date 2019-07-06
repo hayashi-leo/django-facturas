@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 # Create your models here.
 
 class Product(models.Model):
@@ -21,6 +23,11 @@ class Product(models.Model):
 
     isSaleTaxIncluded = models.BooleanField(default=False)
     isServiceTaxIncluded = models.BooleanField(default=False)
+    
+    date_created = models.DateTimeField(default=timezone.now)
+    date_modified = models.DateTimeField(default=timezone.now)
+
+    isDiscontinued = models.BooleanField(default=False)
 
     def __str__(self):
         '''

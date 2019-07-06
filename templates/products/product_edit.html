@@ -1,0 +1,44 @@
+<!-- template/products/product_edit.html -->
+
+{% extends 'dashboard/base.html' %}
+
+{% block dashboard_content %}
+
+{# dashboard_contents must be rendered within <div class="row"/> tags #}
+
+
+<div class="row">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ title }} </h3>
+    </div>
+    <div class="panel-body">
+        <form role="form" method="post">
+            <fieldset>
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+
+                <div class="form-group">
+                    {% if field.label == 'IsServiceTaxIncluded' or field.label == 'IsSaleTaxIncluded' %}
+                    <input name="{{ field.name }}" type="checkbox"> {{ field.label }}
+                    {% else %}
+                    <input class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}" type="text">
+                    {% endif %}
+                    {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text|safe }}</span>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                    <label class="control-label">{{ error }}</label>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-lg btn-success btn-block">Save</button>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

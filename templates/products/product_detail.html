@@ -1,0 +1,35 @@
+<!-- templates/products/product_detail.html -->
+
+{% extends 'dashboard/base.html' %}
+
+{% block dashboard_content %}
+
+{# dashboard_contents must be rendered within <div class="row"/> tags #}
+
+<div class="row">
+    {% if product.date_created %}
+        <div class="date">
+            {{ product.date_created }}
+        </div>
+    {% endif %}
+
+    {% if product.date_modified %}
+        <div class="date">
+            {{ product.date_modified }}
+        </div>
+    {% endif %}
+
+    <p>description: {{ product.description }} </p>
+    <p>title: {{ product.title }} </p>
+    <p>code: {{ product.code }} </p>
+    <p>quantity: {{ product.quantity }} </p>
+    <p>unit price: {{ product.unitPrice }} </p>
+    <p>bar code: {{ product.barCode }} </p>
+    <p>unit of measure: {{ product.unitOfMeasure }} </p>
+    <p>sales tax included: {{ product.isSaleTaxIncluded }} </p>
+    <p>service tax included: {{ product.isServiceTaxIncluded }} </p>
+
+    <p>discontinued: {{ product.isDiscontinued }} </p>
+</div> <!-- class="row" --> 
+
+{% endblock %}
