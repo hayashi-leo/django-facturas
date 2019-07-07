@@ -20,12 +20,16 @@ class ProductForm(forms.ModelForm):
 class NewProductForm(forms.ModelForm):
 
     class Meta:
-        '''
-        With class Meta, we tell django which model
-        should be used to create this form
-        '''
-
         model = Product
         fields = ('title', 'code', 'description',
                   'quantity', 'unitPrice', 'barCode',
                   'unitOfMeasure', 'isSaleTaxIncluded', 'isServiceTaxIncluded',)
+
+class EditProductForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ('title', 'code', 'description',
+                  'quantity', 'unitPrice', 'barCode',
+                  'unitOfMeasure', 'isSaleTaxIncluded', 'isServiceTaxIncluded',
+                  'isDiscontinued')

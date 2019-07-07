@@ -23,18 +23,20 @@
         <div class="col-12 col-sm-6">
             {% if field.label == 'IsServiceTaxIncluded' %}
                 <label> Service Tax </label> <br>
-                <input name="{{ field.name }}" type="checkbox" disabled> 13% Service Tax Included
+                <input name="{{ field.name }}" type="checkbox" disabled {% if field.value == True %} checked {% endif %}> 13% Service Tax Included
                 <label>  </label> <br><!-- placeholder -->
             {% elif field.label == 'IsSaleTaxIncluded' %}
                 <label> Local Sales Tax </label><br>
-                <input name="{{ field.name }}" type="checkbox" disabled> 13% Sales Tax Included
+                <input name="{{ field.name }}" type="checkbox" disabled {% if field.value == True %} checked {% endif %}> 13% Sales Tax Included
                 <label>  </label> <br><!-- placeholder -->
             {% elif field.label == 'Description' %}
                 <label>{{ field.label }}</label>
                 <textarea class="form-control" rows="4" name="{{ field.name }}" disabled>{{ field.value }}</textarea>
             {% elif field.label == 'IsDiscontinued' %}
-                {% if field.value == 'True' %}
-                    <label> This product has been discontinued </label>
+                {% if field.value == True %}
+                    <div class="form-group has-error">
+                    <label class="control-label"> This product has been discontinued </label>
+                    </div>
                 {% endif %}
             {% else %}
             <label> {{ field.label }}</label> <br>
@@ -43,6 +45,9 @@
             <br>
         </div>
     {% endfor %}
+    <div class="form-group col-12 col-sm-6">
+        <a href="{% url 'product_edit' pk=form.instance.pk %}" class="btn btn-default">Edit</a>
+    </div>
 
     </div> <!-- class="row" -->
 </div>
