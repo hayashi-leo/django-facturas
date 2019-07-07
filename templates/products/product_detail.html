@@ -6,6 +6,12 @@
 
 {# dashboard_contents must be rendered within <div class="row"/> tags #}
 
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Product</h1>
+    </div>
+</div>
+
 <div class="row" style="align-content: center">
     <div class="panel-heading">
         <h3 class="panel-title">Product Details</h3>
@@ -15,8 +21,26 @@
 
     {% for field in form.visible_fields %}
         <div class="col-12 col-sm-6">
-            {{ field.label }} :<br>
-            <input class="form-control" name="{{ field.name }}" value="{{ field.value }}" type="text" readonly>
+            {% if field.label == 'IsServiceTaxIncluded' %}
+                <label> Service Tax </label> <br>
+                <input name="{{ field.name }}" type="checkbox" disabled> 13% Service Tax Included
+                <label>  </label> <br><!-- placeholder -->
+            {% elif field.label == 'IsSaleTaxIncluded' %}
+                <label> Local Sales Tax </label><br>
+                <input name="{{ field.name }}" type="checkbox" disabled> 13% Sales Tax Included
+                <label>  </label> <br><!-- placeholder -->
+            {% elif field.label == 'Description' %}
+                <label>{{ field.label }}</label>
+                <textarea class="form-control" rows="4" name="{{ field.name }}" disabled>{{ field.value }}</textarea>
+            {% elif field.label == 'IsDiscontinued' %}
+                {% if field.value == 'True' %}
+                    <label> This product has been discontinued </label>
+                {% endif %}
+            {% else %}
+            <label> {{ field.label }}</label> <br>
+            <input class="form-control" name="{{ field.name }}" value="{{ field.value }}" type="text" disabled>
+            {% endif %}
+            <br>
         </div>
     {% endfor %}
 

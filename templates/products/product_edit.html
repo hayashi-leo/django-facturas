@@ -8,19 +8,49 @@
 
 
 <div class="row">
-    <div class="panel-heading">
-        <h3 class="panel-title">{{ title }} </h3>
+    <div class="col-lg-12">
+        <h1 class="page-header">Product</h1>
     </div>
-    <div class="panel-body">
-        <form role="form" method="post">
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ title }} </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+                <form role="form" method="post">
             <fieldset>
                 {% csrf_token %}
+                <div class="col-lg-12">
                 {% for field in form.visible_fields %}
 
                 <div class="form-group col-12 col-sm-6">
-                    {% if field.label == 'IsServiceTaxIncluded' or field.label == 'IsSaleTaxIncluded' %}
-                    <input name="{{ field.name }}" type="checkbox"> {{ field.label }}
+                    {% if field.label == 'IsServiceTaxIncluded' %}
+                    <label> Service Tax </label> <br>
+                    <input name="{{ field.name }}" type="checkbox"> 13% Service Tax Included
+                    {% elif field.label == 'IsSaleTaxIncluded' %}
+                    <label> Local Sales Tax </label> <br>
+                    <input name="{{ field.name }}" type="checkbox"> 13% Sales Tax Included
+                    {% elif field.label == 'Description' %}
+                    <label>{{ field.label }}</label>
+                    <textarea class="form-control" rows="4" name="{{ field.name }}"></textarea>
+                    {% elif field.label == 'UnitOfMeasure' %}
+                    <label>Unit Of Measure</label>
+                    <select class="form-control" name="{{ field.name }}">
+                        <option>Set</option>
+                        <option>Roll</option>
+                        <option>Square Meter</option>
+                        <option>Bag</option>
+                        <option>Box</option>
+                        <option>Dozen</option>
+                        <option>Half Dozen</option>
+                        <option>Kilograms</option>
+                        <option></option>
+                    </select>
                     {% else %}
+                    <label>{{ field.label }}</label>
                     <input class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}" type="text">
                     {% endif %}
                     {% if field.help_text %}
@@ -34,15 +64,15 @@
                 {% endfor %}
 
                 <div class="form-group col-12 col-sm-6">
-
-                <button type="submit" class="btn btn-lg btn-success btn-block">Save</button>
-                </div>
-                <div class="form-group col-12 col-sm-6">
-                <button type="cancel" class="btn btn-lg btn-success btn-block" onclick="return false;">Cancel</button>
+                <button type="submit" class="btn btn-default">Save</button>
                 </div>
 
             </fieldset>
         </form>
+
+
+            </div>
+        </div>
     </div>
 </div>
 
